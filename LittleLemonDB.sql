@@ -71,12 +71,19 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Orders` (
   `itemID` INT NOT NULL,
   `quantity` INT NOT NULL,
   `bill_no` INT NOT NULL,
+  `customerID` INT NOT NULL,
   PRIMARY KEY (`orderID`),
   UNIQUE INDEX `orderID_UNIQUE` (`orderID` ASC) VISIBLE,
   INDEX `itemID_idx` (`itemID` ASC) VISIBLE,
+  INDEX `customerID_idx` (`customerID` ASC) VISIBLE,
   CONSTRAINT `itemID`
     FOREIGN KEY (`itemID`)
     REFERENCES `LittleLemonDB`.`Menu` (`itemID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `customerID`
+    FOREIGN KEY (`customerID`)
+    REFERENCES `LittleLemonDB`.`Customers` (`customerID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
