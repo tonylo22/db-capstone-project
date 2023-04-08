@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Bookings` (
   PRIMARY KEY (`bookingID`),
   UNIQUE INDEX `bookingID_UNIQUE` (`bookingID` ASC) VISIBLE,
   INDEX `customerID_idx` (`customerID` ASC) VISIBLE,
-  CONSTRAINT `customerID`
+  CONSTRAINT `bookings_customerID`
     FOREIGN KEY (`customerID`)
     REFERENCES `LittleLemonDB`.`Customers` (`customerID`)
     ON DELETE NO ACTION
@@ -76,12 +76,12 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Orders` (
   UNIQUE INDEX `orderID_UNIQUE` (`orderID` ASC) VISIBLE,
   INDEX `itemID_idx` (`itemID` ASC) VISIBLE,
   INDEX `customerID_idx` (`customerID` ASC) VISIBLE,
-  CONSTRAINT `itemID`
+  CONSTRAINT `orders_itemID`
     FOREIGN KEY (`itemID`)
     REFERENCES `LittleLemonDB`.`Menu` (`itemID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `customerID`
+  CONSTRAINT `orders_customerID`
     FOREIGN KEY (`customerID`)
     REFERENCES `LittleLemonDB`.`Customers` (`customerID`)
     ON DELETE NO ACTION
@@ -110,12 +110,12 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Order_status` (
   PRIMARY KEY (`statusID`),
   INDEX `statusType_idx` (`statusType` ASC) VISIBLE,
   INDEX `orderID_idx` (`orderID` ASC) VISIBLE,
-  CONSTRAINT `statusType`
+  CONSTRAINT `status_statusType`
     FOREIGN KEY (`statusType`)
     REFERENCES `LittleLemonDB`.`Order_status_types` (`typeID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `orderID`
+  CONSTRAINT `status_orderID`
     FOREIGN KEY (`orderID`)
     REFERENCES `LittleLemonDB`.`Orders` (`orderID`)
     ON DELETE NO ACTION
