@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Menu` (
   `name` VARCHAR(255) NOT NULL,
   `cuisine` VARCHAR(45) NULL,
   `type` VARCHAR(45) NOT NULL,
-  `price` DECIMAL(4,2) NOT NULL,
+  `price` DECIMAL(6,2) NOT NULL,
   PRIMARY KEY (`itemID`),
   UNIQUE INDEX `itemID_UNIQUE` (`itemID` ASC) VISIBLE,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
@@ -109,15 +109,9 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Order_status` (
   `date` DATETIME NOT NULL,
   PRIMARY KEY (`statusID`),
   INDEX `statusType_idx` (`statusType` ASC) VISIBLE,
-  INDEX `orderID_idx` (`orderID` ASC) VISIBLE,
   CONSTRAINT `status_statusType`
     FOREIGN KEY (`statusType`)
     REFERENCES `LittleLemonDB`.`Order_status_types` (`typeID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `status_orderID`
-    FOREIGN KEY (`orderID`)
-    REFERENCES `LittleLemonDB`.`Orders` (`orderID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
